@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int health = 100;
+    [SerializeField] int scoreValue = 150;
 
     [Header("VFX")]
     [SerializeField] GameObject explosionVFX;
@@ -77,6 +78,7 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
+        FindObjectOfType<GameSession>().AddToScore(scoreValue);
         GameObject explosion = Instantiate(explosionVFX, transform.position, transform.rotation);
         Destroy(explosion, durationOfExplosion);
         Destroy(gameObject);
